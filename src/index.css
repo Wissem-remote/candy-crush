@@ -1,3 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,9 +8,54 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #0f172a;
+  color:white;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+.game{
+  width:540px;
+  height:450px;
+  display:flex;
+  flex-wrap:wrap;
+  
+}
+
+.img{
+  width:12%;
+  height:auto;
+  margin: 1px;
+}
+
+@media screen and (max-width: 1040px){
+  .img{
+    margin: 0;
+  }
+  .game{
+    height: 350px;
+  }
+}
+.seen{
+  animation: click 2s;
+}
+@keyframes click{
+  0%{
+    border: none;
+    box-shadow: none;
+  }
+  45%{
+    border: solid 2px rgb(196 181 253);
+    box-shadow: rgb(99 102 241 / 0.5);
+  }
+  55%{
+    border: none;
+    box-shadow: none;
+  }
+  100%{
+    border: solid 2px rgb(196 181 253);
+    box-shadow: rgb(99 102 241 / 0.5);
+  }
 }
