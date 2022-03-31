@@ -16,9 +16,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.score{
+  height: 10vh;
+}
+.candy{
+  height: 80vh;
+}
 .game{
   width:540px;
-  height:450px;
+  height:auto;
   display:flex;
   flex-wrap:wrap;
   
@@ -41,6 +47,7 @@ code {
 .seen{
   animation: click 2s;
 }
+
 @keyframes click{
   0%{
     border: none;
@@ -57,5 +64,19 @@ code {
   100%{
     border: solid 2px rgb(196 181 253);
     box-shadow: rgb(99 102 241 / 0.5);
+  }
+}
+.fade{
+  animation: fade 2s;
+}
+.clicks:hover{
+  pointer-events:none;
+}
+@keyframes fade {
+  0%{
+    opacity: 0%;
+  }
+  100%{
+    opacity: 100%;
   }
 }
