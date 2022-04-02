@@ -10,6 +10,9 @@ import yellow from './image/yellow-candy.png'
 import blue from './image/blue-candy.png'
 import Score from "./components/score";
 import Checks from "./components/check"
+
+
+
 const width= 8
 
 const color=[
@@ -27,7 +30,7 @@ function App() {
   const[changeEnd,setChangeEnd]=useState(null)
   const[score,setScore]=useState(0)
   const[valid,setValid]=useState(false)
- 
+  const[move,setMove]=useState(false)
 
 
   const Create=()=>{
@@ -79,15 +82,16 @@ function App() {
         if(firstCol.includes(i) && array[i]=== blanc){
           let NumColor = Math.floor(Math.random()*color.length)
           array[i]= color[NumColor]
-          return true
+          setMove(true)
         }
       if((array[i+width]) === blanc){
         array[i+width]= array[i]
         array[i]= blanc
-        return true
+        setMove(true)
       }  
 
       }
+      setMove(false)
   },[array])
 
 
@@ -138,6 +142,7 @@ const dragEnd=(e,i)=>{
     }
 }
 
+
     useEffect(() => {
       Create()
     }, [])
@@ -149,8 +154,9 @@ const dragEnd=(e,i)=>{
         searchRow(3)
         searchRow()
         moveCube()
+        
         setArray(array=>[...array])
-      },200)
+      },100)
         
       return ()=> clearInterval(Timer)
     }, [searchCol,searchRow,moveCube,array])
@@ -164,16 +170,16 @@ const dragEnd=(e,i)=>{
   <Content>
     
 
-    <div id="c" className={`flex items-center justify-center text-xl text-gray-300 sm:w-5/12 p-2 h-auto w-full shadow rounded boder-solid border-2 shadow-lg shadow-indigo-500/50 border-violet-300 `}>
+    <div id="c" className={`hey flex items-center justify-center text-xl text-gray-300 w-5/12 p-2 h-auto  shadow rounded boder-solid border-2 shadow-lg shadow-indigo-500/50 border-violet-300 `}>
    
-    { !valid && <Checks score={setScore} valid={setValid} wait={moveCube()} />}
+    { !valid && <Checks score={setScore} valid={setValid} wait={move} />}
       <div className={valid?"pl-4  game":"pl-4 game opacity-0"} >
         {array.map((v,i)=>{
           return <img
           src={v}
           key={i}
           className="img"
-          
+          id="drag"
           alt={v}
           data-id={i}
           draggable={true}
@@ -183,7 +189,7 @@ const dragEnd=(e,i)=>{
           onDragStart={dragStart}
           onDrop={dragDrop}
           onDragEnd={dragEnd}
-          whileDrag={{ scale: 1.2 }}
+          
           />
         })}
       </div>
