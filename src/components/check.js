@@ -1,6 +1,7 @@
 import React from 'react'
 
 export default function Checks({wait,valid,score}) {
+ 
     return (<>
         <div className="absolute z-10 ">
             <button 

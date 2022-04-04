@@ -12,7 +12,6 @@ import Score from "./components/score";
 import Checks from "./components/check"
 
 
-
 const width= 8
 
 const color=[
@@ -60,9 +59,9 @@ function App() {
   const searchRow=useCallback((value=2,start=64)=>{
     for(let i = 0; i < start;i++){
                       //initial, +8, +16
-      const colThree = value === 2 ?[i,i+1, i+ value]:[i,i+1, i+ 2,i + value]
+      const colThree = value === 2 ?[i,i+1, i+ 2]:[i,i+1, i+ 2,i + value]
       const checkColor= array[i]
-      const notValid = start === 2? [6, 7, 14, 15, 22, 23, 30, 31, 38, 39, 46, 47, 54, 55, 63, 64]:
+      const notValid = value === 2? [6, 7, 14, 15, 22, 23, 30, 31, 38, 39, 46, 47, 54, 55, 63, 64]:
       [5,6, 7, 13,14, 15, 21,22, 23, 29, 30, 31, 39, 38, 39, 45, 46, 47, 53, 54, 55, 62, 63, 64]
       
       if(notValid.includes(i)) continue
@@ -137,7 +136,7 @@ const dragEnd=(e,i)=>{
       array[changeMove]= changeEnd.getAttribute('src')
       array[changeDrop]= change.getAttribute('src')
       setArray([...array])
-      console.log(changeEnd)
+      
       border.classList.add('seen')
     }
 }
@@ -161,7 +160,7 @@ const dragEnd=(e,i)=>{
       return ()=> clearInterval(Timer)
     }, [searchCol,searchRow,moveCube,array])
 
-
+  
 
   return <>
   <NavBar />
@@ -178,7 +177,7 @@ const dragEnd=(e,i)=>{
           return <img
           src={v}
           key={i}
-          className="img"
+          className="img draggable"
           id="drag"
           alt={v}
           data-id={i}
