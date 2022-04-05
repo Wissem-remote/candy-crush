@@ -90,9 +90,18 @@ function App() {
       }  
 
       }
-      setMove(false)
+     
   },[array])
 
+const verif= useCallback(()=>{
+  const a = searchCol(3,39)
+    const b = searchCol()
+    const c = searchRow(3)
+    const d = searchRow()
+    if (!a && !b && !c && !d){
+      setMove(false)
+    }
+},[searchRow,searchCol])
 
 const dragStart=(e)=>{
 setChange(e.target)
@@ -153,12 +162,12 @@ const dragEnd=(e,i)=>{
         searchRow(3)
         searchRow()
         moveCube()
-        
+        verif()
         setArray(array=>[...array])
       },100)
         
       return ()=> clearInterval(Timer)
-    }, [searchCol,searchRow,moveCube,array])
+    }, [searchCol,searchRow,moveCube,verif,array])
 
   
 

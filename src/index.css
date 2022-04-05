@@ -38,8 +38,10 @@ code {
 }
 
 @media screen and (max-width: 1040px){
-  .score{
-
+  .scores{
+    
+    height: 40%;
+    margin-top: 20%;
   }
   .img{
    margin: 1px;
@@ -50,7 +52,7 @@ code {
   }
   .hey{
     width: 90%;
-    height: 90%;
+    height: 60%;
   }
 }
 .seen{
